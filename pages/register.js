@@ -15,7 +15,7 @@ const Register = () => {
   const registerSubmitHandler = (e) => {
     e.preventDefault();
     axios
-      .post(`http://localhost:3003/user/register`, {
+      .post(`http://localhost:3005/user/register`, {
         first_name: firstName,
         last_name: lastName,
         email: email,
