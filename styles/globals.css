@@ -374,6 +374,8 @@ tr:nth-child(even) {
 }
 
 .current-user {
+  display: flex;
+  justify-content: space-between;
   background: #371b58;
   padding: 20px;
   margin-left: 10px;
@@ -384,6 +386,11 @@ tr:nth-child(even) {
   text-align: center;
   font-size: 18px;
   margin: 28px;
+}
+
+.current-user button {
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
 .selected {
@@ -485,4 +492,11 @@ tr:nth-child(even) {
 
 .content img {
   width: 300px;
+}
+
+.css-3bmhjh-MuiPaper-root-MuiPopover-paper form {
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

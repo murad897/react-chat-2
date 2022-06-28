@@ -23,11 +23,13 @@ const chats = () => {
           const person = res.data.user._id;
           setPersonId(person);
           setPesronName(res.data.user.first_name);
-          axios.get(`http://localhost:3005/user//allUsers/${person}`).then((res) => {
-            let data = res.data.users;
-            setContacts(data);
-            console.log(data);
-          });
+          axios
+            .get(`http://localhost:3005/user//allUsers/${person}`)
+            .then((res) => {
+              let data = res.data.users;
+              setContacts(data);
+              console.log(data);
+            });
           console.log(person, "token success");
         })
         .catch((err) => {
@@ -53,7 +55,11 @@ const chats = () => {
       {token ? (
         <div className="main-chat-container">
           <div className="inner-chat-container">
-            <Contacts contacts={contacts} personName={personName} changeChat={handleChatChange} />
+            <Contacts
+              contacts={contacts}
+              personName={personName}
+              changeChat={handleChatChange}
+            />
             <Chatcontainer
               currentChat={currentChat}
               personId={personId}
