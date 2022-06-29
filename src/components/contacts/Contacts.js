@@ -3,7 +3,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Popover from "@mui/material/Popover";
 
-const Contacts = ({ contacts, personName, changeChat, currentUser }) => {
+const Contacts = ({
+  contacts,
+  personName,
+  changeChat,
+  currentUser,
+  socket,
+}) => {
   const [token, setToken] = useState("");
   const [currentSelected, setCurrentSelected] = useState(undefined);
   const [currrentuserName, setCurrrentUserName] = useState(undefined);
@@ -11,6 +17,27 @@ const Contacts = ({ contacts, personName, changeChat, currentUser }) => {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+  const sendImage = async (e) => {
+    e.preventDefault();
+    try {
+      const data = new FormData();
+      let selectedFile = document.getElementById("img").files[0];
+      data.append("inputname", selectedFile);
+      console.log(selectedFile);
+      const res = await axios.post(
+        `http://localhost:3005/user/uploadImage`,
+        selectedFile,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleClose = () => {
@@ -58,8 +85,7 @@ const Contacts = ({ contacts, personName, changeChat, currentUser }) => {
             horizontal: "left",
           }}
         >
-          <form>
-            edit name : <input type="text" />
+          <form onSubmit={sendImage} encType="multipart/form-data">
             edit pic: <input type="file" id="img" name="img" accept="image/*" />
             <input type="submit" />
           </form>

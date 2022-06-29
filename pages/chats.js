@@ -59,6 +59,7 @@ const chats = () => {
               contacts={contacts}
               personName={personName}
               changeChat={handleChatChange}
+              socket={socket}
             />
             <Chatcontainer
               currentChat={currentChat}
