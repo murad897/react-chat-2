@@ -16,7 +16,7 @@ const chats = () => {
     console.log(token);
     if (token) {
       axios
-        .post(`http://localhost:3005/user/getUser`, {
+        .post(`http://localhost:3006/user/getUser`, {
           token: token,
         })
         .then((res) => {
@@ -24,7 +24,7 @@ const chats = () => {
           setPersonId(person);
           setPesronName(res.data.user.first_name);
           axios
-            .get(`http://localhost:3005/user//allUsers/${person}`)
+            .get(`http://localhost:3006/user/allUsers/${person}`)
             .then((res) => {
               let data = res.data.users;
               setContacts(data);
@@ -42,7 +42,7 @@ const chats = () => {
 
   useEffect(() => {
     if (personId) {
-      socket.current = io("http://localhost:3005");
+      socket.current = io("http://localhost:3006");
       socket.current.emit("add-user", personId);
     }
   }, [personId]);

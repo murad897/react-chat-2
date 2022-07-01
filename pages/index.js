@@ -15,7 +15,7 @@ const index = () => {
     console.log(token);
     if (token) {
       axios
-        .post(`http://localhost:3005/user/getUser`, {
+        .post(`http://localhost:3006/user/getUser`, {
           token: token,
         })
         .then((res) => {
@@ -30,13 +30,6 @@ const index = () => {
       console.log("empty token");
     }
   }, [token]);
-
-  //   let token;
-  //   if (typeof window !== "undefined") {
-  //     // Perform localStorage action
-  //     token = localStorage.getItem("token");
-  //     console.log(token);
-  //   }
 
   return (
     <div>

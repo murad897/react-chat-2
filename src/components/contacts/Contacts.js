@@ -21,18 +21,13 @@ const Contacts = ({
   const sendImage = async (e) => {
     e.preventDefault();
     try {
-      const data = new FormData();
+      const dataPic = new FormData();
       let selectedFile = document.getElementById("img").files[0];
-      data.append("inputname", selectedFile);
+      dataPic.append("imageUpload", selectedFile);
       console.log(selectedFile);
       const res = await axios.post(
-        `http://localhost:3005/user/uploadImage`,
-        selectedFile,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        `http://localhost:3006/user/uploadImage`,
+        dataPic
       );
       console.log(res);
     } catch (err) {
