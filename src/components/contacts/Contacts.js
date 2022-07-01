@@ -27,7 +27,12 @@ const Contacts = ({
       console.log(selectedFile);
       const res = await axios.post(
         `http://localhost:3006/user/uploadImage`,
-        dataPic
+        dataPic,
+        {
+          headers: {
+            Authorization: `baerer ${localStorage.getItem("token")}`,
+          },
+        }
       );
       console.log(res);
     } catch (err) {
