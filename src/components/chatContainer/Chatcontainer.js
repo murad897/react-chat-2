@@ -7,6 +7,8 @@ import { v4 as uuidv4 } from "uuid";
 const Chatcontainer = ({ currentChat, personId, personName, socket }) => {
   const [messages, setMessages] = useState([]);
   const [arrivalMessage, setArrivalMessage] = useState(null);
+  const [currentUserAvatar, setCurrentUserAvatar] = useState("");
+  const [anotherUserAvatar, setAnotherUserAvatar] = useState("");
   const scrollRef = useRef();
   console.log(currentChat);
   const getallmessageHnadler = () => {
@@ -28,6 +30,14 @@ const Chatcontainer = ({ currentChat, personId, personName, socket }) => {
     console.log(personId, "personId");
     console.log(currentChat._id, "currentChatid");
     console.log(msg, "message");
+    socket.current.on("usersAvatar", (users) => {
+      console.log(users, "users");
+      let currentUser = users[0].avatar_url;
+      let anotherUser = users[1].avatar_url;
+      console.log(currentUser, "current");
+      setCurrentUserAvatar(currentUser);
+      setAnotherUserAvatar(anotherUser);
+    });
     const test = typeof msg;
     console.log(test);
     if (currentChat) {
@@ -49,6 +59,7 @@ const Chatcontainer = ({ currentChat, personId, personName, socket }) => {
     if (socket.current) {
       socket.current.on("msg-recieve", (msg) => {
         setArrivalMessage({ fromSelf: false, message: msg });
+        console.log("fgsfsd");
       });
     }
   });
@@ -82,9 +93,15 @@ const Chatcontainer = ({ currentChat, personId, personName, socket }) => {
             >
               <div className="content-names">
                 {message.fromSelf ? (
-                  <span>{personName}</span>
+                  <img
+                    className="current-user-avatar"
+                    src={currentUserAvatar}
+                  />
                 ) : (
-                  <span>{currentChat.first_name}</span>
+                  <img
+                    className="another-user-avatar"
+                    src={anotherUserAvatar}
+                  />
                 )}
                 <div className="content">
                   {" "}

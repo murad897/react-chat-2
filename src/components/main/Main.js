@@ -24,7 +24,7 @@ const Main = () => {
   const [filteredResults, setFilteredResults] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:3006/products`, {
+      .get(`http://localhost:3007/products`, {
         headers: {
           Authorization: `bearer ${localStorage.getItem("token")}`,
         },

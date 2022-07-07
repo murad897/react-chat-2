@@ -28,7 +28,7 @@ const SecPopup = () => {
   const PopupSubmitEvent = async () => {
     try {
       await axios.patch(
-        `http://localhost:3006/products/${state._id}`,
+        `http://localhost:3007/products/${state._id}`,
         {
           image: state.image,
           name: state.name,
@@ -41,10 +41,7 @@ const SecPopup = () => {
     } catch (err) {
       console.log(err);
     } finally {
-      const getProducts = await axios.get(
-        `http://localhost:3006/products`,
-        headers
-      );
+      const getProducts = await axios.get(`http://localhost:3007/products`, headers);
 
       const { data } = getProducts.data;
       console.log(data, "hhhhh");
@@ -134,11 +131,7 @@ const SecPopup = () => {
           >
             Submit
           </Button>
-          <Button
-            className="close-modal-button"
-            variant="contained"
-            onClick={Closemodal}
-          >
+          <Button className="close-modal-button" variant="contained" onClick={Closemodal}>
             Close modal
           </Button>
         </form>

@@ -21,16 +21,16 @@ const Contacts = ({
   const sendImage = async (e) => {
     e.preventDefault();
     try {
-      const dataPic = new FormData();
+      const data = new FormData();
       let selectedFile = document.getElementById("img").files[0];
-      dataPic.append("imageUpload", selectedFile);
+      data.append("inputname", selectedFile);
       console.log(selectedFile);
       const res = await axios.post(
-        `http://localhost:3006/user/uploadImage`,
-        dataPic,
+        `http://localhost:3007/user/uploadImage`,
+        selectedFile,
         {
           headers: {
-            Authorization: `baerer ${localStorage.getItem("token")}`,
+            "Content-Type": "multipart/form-data",
           },
         }
       );

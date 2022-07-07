@@ -15,7 +15,7 @@ const index = () => {
     console.log(token);
     if (token) {
       axios
-        .post(`http://localhost:3006/user/getUser`, {
+        .post(`http://localhost:3007/user/getUser`, {
           token: token,
         })
         .then((res) => {
@@ -30,6 +30,8 @@ const index = () => {
       console.log("empty token");
     }
   }, [token]);
+
+  
 
   return (
     <div>
